@@ -2,3 +2,4 @@ flask
 rembg
 gradio_client
 python-dotenv
+onnxruntime==1.17.3
