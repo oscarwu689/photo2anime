@@ -20,10 +20,14 @@ client = Client("https://yuanshi-ominicontrol-art.hf.space/", hf_token=hf_token)
 output_dir = "outputs"
 os.makedirs(output_dir, exist_ok=True)
 
+@app.route("/", methods=["GET", "POST"])
+def root():
+    return jsonify({"message": "🚀 App is running!"}), 200
+
+
 @app.route("/healthcheck", methods=["GET"])
 def healthcheck():
     return jsonify({"status": "ok"}), 200
-
 
 
 @app.route("/stylize", methods=["POST"])
