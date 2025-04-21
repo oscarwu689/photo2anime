@@ -20,32 +20,32 @@ client = Client("https://yuanshi-ominicontrol-art.hf.space/", hf_token=hf_token)
 output_dir = "outputs"
 os.makedirs(output_dir, exist_ok=True)
 
-@app.route("/")
-def upload_form():
-    return '''
-    <!DOCTYPE html>
-    <html lang="zh">
-    <head>
-        <meta charset="UTF-8">
-        <title>圖片風格化 Demo</title>
-    </head>
-    <body>
-        <h1>🖼️ 上傳圖片進行風格化</h1>
-        <form method="POST" action="/stylize" enctype="multipart/form-data">
-            <label>選擇圖片：</label>
-            <input type="file" name="image" accept="image/*" required><br><br>
+# @app.route("/")
+# def upload_form():
+#     return '''
+#     <!DOCTYPE html>
+#     <html lang="zh">
+#     <head>
+#         <meta charset="UTF-8">
+#         <title>圖片風格化 Demo</title>
+#     </head>
+#     <body>
+#         <h1>🖼️ 上傳圖片進行風格化</h1>
+#         <form method="POST" action="/stylize" enctype="multipart/form-data">
+#             <label>選擇圖片：</label>
+#             <input type="file" name="image" accept="image/*" required><br><br>
 
-            <label>風格：</label>
-            <input type="text" name="style" value="Studio Ghibli"><br><br>
+#             <label>風格：</label>
+#             <input type="text" name="style" value="Studio Ghibli"><br><br>
 
-            <input type="submit" value="開始轉換">
-        </form>
+#             <input type="submit" value="開始轉換">
+#         </form>
 
-        <br>
-        <p>圖片會直接顯示在新頁面中</p>
-    </body>
-    </html>
-    '''
+#         <br>
+#         <p>圖片會直接顯示在新頁面中</p>
+#     </body>
+#     </html>
+#     '''
 
 
 @app.route("/stylize", methods=["POST"])
@@ -101,6 +101,5 @@ def stylize():
     return send_file(final_path, mimetype="image/png")
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 6000))
-    app.run(debug=True, host="0.0.0.0", port=port)
+    app.run(debug=True, host="0.0.0.0", port=6000)
 
