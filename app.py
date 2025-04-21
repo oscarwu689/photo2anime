@@ -12,6 +12,10 @@ load_dotenv()
 
 app = Flask(__name__)
 hf_token = os.getenv("hf_token")
+
+if not hf_token:
+    raise RuntimeError("❌ 環境變數 hf_token 未設定！請在 Render 上加上環境變數")
+
 client = Client("https://yuanshi-ominicontrol-art.hf.space/", hf_token=hf_token)
 output_dir = "outputs"
 os.makedirs(output_dir, exist_ok=True)
@@ -97,5 +101,6 @@ def stylize():
     return send_file(final_path, mimetype="image/png")
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(debug=False, host="0.0.0.0", port=port)
+    port = int(os.environ.get("PORT", 6000))
+    app.run(debug=True, host="0.0.0.0", port=port)
+
